@@ -1,0 +1,28 @@
+@import "tailwindcss";
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+@theme{
+    --color-primary: #181819;
+    --color-primary-2: #666666;
+    --color-secondary: #898889;
+    --color-background: #FFFFFF;
+    --color-background-2: #fafbfb;
+    --color-hover: #ececed;
+    --color-line: #e1e1e0;
+    --color-btn: #c4dd00;
+    --color-overlay: #00000080;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
+}
+
+.dark {
+    --color-primary: #ececed;
+    --color-primary-2: #9f9f9e;
+    --color-secondary: #a0a0a1;
+    --color-background: #181819;
+    --color-background-2: #1f1f20;
+    --color-hover: #2a2a2b;
+    --color-line: #333334;
+    --color-overlay: #00000080;
+    /* --color-btn: #7f1d1d; */
+    --color-btn: #c4dd00;
+}
