@@ -23,6 +23,9 @@
     --color-hover: #2a2a2b;
     --color-line: #333334;
     --color-overlay: #00000080;
-    /* --color-btn: #7f1d1d; */
     --color-btn: #c4dd00;
+}
+
+html, body {
+    background-color: var(--color-background);
 }

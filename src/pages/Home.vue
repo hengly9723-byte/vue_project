@@ -3,7 +3,9 @@
 </script>
 
 <template>
-  <div class="w-full h-screen flex justify-center items-center text-primary bg-background">Home</div>
+  <div class="w-full flex-1 flex flex-col justify-center items-center text-primary bg-background">
+    
+  </div>
 </template>
 
 <style scoped>

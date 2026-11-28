@@ -32,7 +32,7 @@ watch(() => props.open, (isOpen) => {
       <div v-if="open" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/50" @click.self="emit('close')">
         <div class="relative w-[1000px] h-[700px] pl-[200px] max-h-[90%] max-w-[90%] overflow-hidden rounded-xl bg-background">
           <div class="absolute left-0 top-0 z-40 flex h-14 w-full items-center justify-between border-b-[1px] border-line bg-background px-4">
-            <h2 class="text-primary text-lg font-medium">Setting</h2>
+            <h2 class="text-primary text-lg font-medium">Settings</h2>
             <button class="h-8 w-8 flex justify-center items-center rounded-full hover:bg-hover " @click="emit('close')"><i class="bi bi-x text-2xl text-primary"></i></button>
           </div>
           

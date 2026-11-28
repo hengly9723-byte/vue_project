@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <footer class="fixed flex justify-between px-10 items-center bottom-0 left-0 z-40 w-full h-12 border-t-[1px] border-line bg-background">
+  <footer class="flex justify-between px-10 items-center w-full h-12 border-t border-line bg-background">
     <div class="w-[160px]"></div>
     <div class="text-sm text-secondary">© 2026 Ly Sokheng. All rights reserved.</div>
     <div>

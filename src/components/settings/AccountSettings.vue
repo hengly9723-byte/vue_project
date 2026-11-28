@@ -1,7 +1,16 @@
 <script setup>
+  import { useRouter } from 'vue-router'
   import { useProfile} from '../../composables/useProfile.js'
+  import { useAuth } from '../../composables/useAuth.js'
   
   const {profile} = useProfile()
+  const { user, updateProfile, signOut } = useAuth()
+  const router = useRouter()
+
+  async function handleSignOut() {
+    await signOut()
+    router.push('/signin')
+  }
 
   function onFileChange(event) {
     const file = event.target.files[0]
@@ -17,7 +26,7 @@
     // read the file and turn it into a string the <img> can show
     const reader = new FileReader()
     reader.onload = () => {
-      profile.value.avatar = reader.result
+      updateProfile({ avatar: reader.result }).catch((e) => alert(e.message))
     }
     reader.readAsDataURL(file)
 
@@ -27,7 +36,7 @@
 </script>
 
 <template>
-  <main class="flex flex-col w-full h-full">
+  <main v-if="user" class="flex flex-col w-full h-full">
     <h2 class="text-lg font-medium text-primary">Profile</h2>
     <div class="flex justify-between w-full h-18 items-center border-b-[1px] border-line">
       <div class="flex flex-col">
@@ -38,6 +47,7 @@
       <div class="flex items-center gap-3">
         <label class="relative cursor-pointer rounded-full border-[1px] border-line group">
           <img v-if="profile.avatar" :src="profile.avatar" :alt="profile.name" class="h-12 w-12 rounded-full border-[1px] border-line">
+          <span v-else class="flex h-12 w-12 items-center justify-center rounded-full font-medium text-white" :style="{ backgroundColor: profile.color }">{{ profile.name?.[0]?.toUpperCase() }}</span>
 
           <input type="file" accept="image/png,image/jpeg,image/webp" class="hidden" @change="onFileChange"/>
 
@@ -48,8 +58,24 @@
       </div>
 
     </div>
+
+    <div class="flex justify-between w-full h-18 items-center border-b-[1px] border-line">
+      <div class="flex flex-col">
+        <h2 class="text-primary">{{ profile.name }}</h2>
+        <h2 class="text-primary-2">{{ profile.email }}</h2>
+      </div>
+      <button class="cursor-pointer rounded-full border border-line px-4 py-1.5 text-primary hover:bg-hover" @click="handleSignOut">
+        Sign out
+      </button>
+    </div>
+  </main>
+
+  <main v-else class="flex flex-col gap-3 text-primary">
+    <h2 class="text-lg font-medium">Profile</h2>
+    <p class="text-primary-2">Sign in to manage your profile.</p>
+    <RouterLink to="/signin" class="w-fit rounded-full bg-btn px-4 py-1.5 font-medium text-black">Sign in</RouterLink>
   </main>
 </template>
 
 <style scoped>
-</style> 
+</style>

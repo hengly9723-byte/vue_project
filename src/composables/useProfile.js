@@ -1,21 +1,12 @@
-import { ref, watch } from 'vue'
-import defaultProfile from '../data/profile.json'
-
-let saved = null
-try {
-  saved = JSON.parse(localStorage.getItem('profile'))
-} catch (e) {}
-
-const profile = ref(saved || structuredClone(defaultProfile))
-
-watch(profile, (newVal) => {
-  try {
-    localStorage.setItem('profile', JSON.stringify(newVal))
-  } catch (e) {
-    console.warn('Could not save profile (image may be too large)')
-  }
-}, { deep: true })
+import { computed } from 'vue'
+import { useAuth } from './useAuth.js'
+import { avatarColor } from '../utils/avatarColor.js'
 
 export function useProfile() {
+  const { user } = useAuth()
+  const profile = computed(() => {
+    if (!user.value) return { name: '', avatar: '', color: '#999' }
+    return { ...user.value, color: avatarColor(user.value.email) }
+  })
   return { profile }
 }
